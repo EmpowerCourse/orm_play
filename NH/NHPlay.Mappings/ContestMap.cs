@@ -17,7 +17,8 @@ namespace NHPlay.Mappings
             // notice also that this is a DOUBLE mapping of the same column
             Map(x => x.TypeOfGame)
                             .Column("GameId")
-                            .CustomType<TypeOfGame>();
+                            .CustomType<TypeOfGame>()
+            				.ReadOnly();
             Map(x => x.OccurredAt).ReadOnly();
 
             HasMany(x => x.Contestants).KeyColumn("ContestId").Cascade.None().Inverse();

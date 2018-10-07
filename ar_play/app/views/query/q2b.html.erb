@@ -1,0 +1,17 @@
+<% @games.each do |g| %>
+<div data-id="<%=g.id %>">
+   <%=g.name %> Contests, first 3 only:
+   <table style='width: 300px; border: solid 1px #000000;'>
+   <tr>
+     <th>Id</th>
+     <th>Players</th>
+   </tr>
+	<% g.contests.take(3).each do |c| %>
+	  <tr>
+	  	<td><%=c.id %></td>
+	  	<td><%=c.players.map{|p| p.initials}.join(',') %></td>
+	  </tr>
+	<% end %>
+    </table>
+</div>
+<% end %>

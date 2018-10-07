@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: ar_play_development
+  username: postgres
+  password: postgres
+
+test:
+  <<: *default
+  database: ar_play_test
+  username: postgres
+  password: postgres
+
+production:
+  <<: *default
+  database: ar_play_production

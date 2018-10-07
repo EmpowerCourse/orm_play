@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contest: one
+  player: one
+  score: 
+
+two:
+  contest: two
+  player: two
+  score: 
