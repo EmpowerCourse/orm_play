@@ -10,6 +10,7 @@ using NHPlay.Models;
 using NHPlay.Mappings;
 using FluentNHibernate.Cfg.Db;
 using System.Collections.Generic;
+using NHibernate.SqlCommand;
 
 namespace NHPlay
 {
@@ -23,11 +24,11 @@ namespace NHPlay
             _sessionFactory = initializeNH();
 
             // list a few players
-            listPlayers();
+            // listPlayers();
             //Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
             // listACoupleOfGames();
             //Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            // listHighScores();
+            listHighScores();
             //Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++");
             // listPlayersOf("Pac-Man");
             // listPlayersOf("Pac-Man", "T");
@@ -151,6 +152,20 @@ namespace NHPlay
                 foreach (var hs in highScoreResults)
                 {
                     Console.WriteLine($"High Score Id: {hs.HighScoreId}, Player: {hs.PlayerInitials}, Game: {hs.GameName}, Score: {hs.Score}");
+                }
+                Console.WriteLine("What about an explicit left join?  We must use QueryOver() style queries for that.");
+                Game gameAlias = null;
+                HighScore hsAlias = null;
+                var gamesAndHighScores = session.QueryOver<Game>(() => gameAlias)
+                  .JoinAlias(() => gameAlias.HighScores, () => hsAlias, JoinType.LeftOuterJoin)
+                  // .Where(() => hsAlias == null || hsAlias.Player.Id <= 9)
+                  .SelectList(list => list
+                    .Select(() => gameAlias.Name)
+                    .SelectCount(() => hsAlias.Id)
+                  ).List<object[]>();
+                foreach (var ghs in gamesAndHighScores)
+                {
+                    Console.WriteLine($"{ghs[0]} has {ghs[1]} high scores");
                 }
             }
         }
