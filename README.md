@@ -39,9 +39,4 @@ production:
 * execute `rake db:migrate`
 * execute `rake db:seed`
 * execute rails s
-
-// rake db:migrate:reset (drop,create,migrate)
-// accepts_nested_attributes_for
-// included do
-// has_one :task, through: :source_collection_task
-// has_one :source_collection_task
+* navigate to http://localhost:3000/q1 (and continue on through q7)
