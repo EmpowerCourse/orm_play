@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   get 'q2' => 'query#q2'
   get 'q3' => 'query#q3'
   get 'q4' => 'query#q4'
+  get 'q5' => 'query#q5'
+  get 'q6' => 'query#q6'
+  get 'q7' => 'query#q7'
 end

@@ -1,0 +1,5 @@
+<% @contests.each do |c| %>
+<div class='large-result' data-id="<%=c.id %>">
+   <%=c.game.name %> was played by <%=c.players.map{|p| p.initials}.join(',') %>
+</div>
+<% end %>

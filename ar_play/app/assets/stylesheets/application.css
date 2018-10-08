@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+div.large-result {
+  font-size: 24pt;
+}

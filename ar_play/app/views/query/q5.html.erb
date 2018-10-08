@@ -1,0 +1,9 @@
+<% @games.each do |g| %>
+<div class='large-result' data-id="<%=g.id %>">
+   <% g.high_scores.each do |hs| %>
+	   <div>
+	     <%=hs.score %> on <%=hs.game.name %> by <%=hs.player.initials %>
+	   </div>
+   <% end %>
+</div>
+<% end %>
